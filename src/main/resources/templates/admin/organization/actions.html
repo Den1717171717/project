@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Organization Actions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: #ff6347;
+        }
+        h2 {
+            color: #ff6347;
+            margin-bottom: 10px;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #e55347;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff6347;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Organization Actions</h1>
+
+<div class="form-container">
+    <h2>Create Organization</h2>
+    <form action="#" th:action="@{/admin/organization/create}" method="post">
+        <label for="createOrganizationName">Organization Name:</label>
+        <input type="text" id="createOrganizationName" name="name" required />
+
+        <button type="submit">Create Organization</button>
+    </form>
+</div>
+
+<div class="form-container">
+    <h2>Update Organization</h2>
+    <form action="#" th:action="@{/admin/organization/update}" method="post">
+        <label for="oldOrganizationName">Old Organization Name:</label>
+        <input type="text" id="oldOrganizationName" name="oldName" required />
+
+        <label for="newOrganizationName">New Organization Name:</label>
+        <input type="text" id="newOrganizationName" name="newName" required />
+
+        <button type="submit">Update Organization</button>
+    </form>
+</div>
+
+<div class="form-container">
+    <h2>Delete Organization</h2>
+    <form action="#" th:action="@{/admin/organization/delete}" method="post">
+        <label for="organizationName">Organization Name:</label>
+        <input type="text" id="organizationName" name="name" required />
+
+        <button type="submit">Delete Organization</button>
+    </form>
+</div>
+
+<a href="/admin/organization/findAll">View All Organizations</a>
+
+</body>
+</html>
