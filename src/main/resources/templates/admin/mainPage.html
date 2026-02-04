@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: #4CAF50;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .action-button {
+            font-size: 18px;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 20px;
+            transition: background-color 0.3s;
+        }
+        .action-button:hover {
+            background-color: #45a049;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Admin Panel - Choose Action</h1>
+
+<div class="button-container">
+    <form action="#" th:action="@{/admin/department/actions}" method="get">
+        <button type="submit" class="action-button">Department</button>
+    </form>
+    <form action="#" th:action="@{/admin/organization/actions}" method="get">
+        <button type="submit" class="action-button">Organization</button>
+    </form>
+</div>
+
+</body>
+</html>
