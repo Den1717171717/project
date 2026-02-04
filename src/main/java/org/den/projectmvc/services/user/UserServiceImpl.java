@@ -1,8 +1,8 @@
 package org.den.projectmvc.services.user;
 
-import org.den.projectmvc.models.Department;
-import org.den.projectmvc.models.Organization;
-import org.den.projectmvc.models.User;
+import org.den.projectmvc.entities.organization.Department;
+import org.den.projectmvc.entities.organization.Organization;
+import org.den.projectmvc.entities.user.User;
 import org.den.projectmvc.repositories.DepartmentRepository;
 import org.den.projectmvc.repositories.OrganizationRepository;
 import org.den.projectmvc.repositories.UserRepository;
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
         }
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User with id " + id + " not found"));
-        user.setIsDeleted(true);
+        user.setDeleted(true);
         userRepository.save(user);
     }
 
@@ -169,33 +169,33 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    @Override
-    public User addOrganization(Long userId, Long organizationId) {
-        if (userId == null || userId <= 0 || organizationId == null || organizationId <= 0) {
-            throw new IllegalArgumentException("Ids must be positive");
-        }
+//    @Override
+//    public User addOrganization(Long userId, Long organizationId) {
+//        if (userId == null || userId <= 0 || organizationId == null || organizationId <= 0) {
+//            throw new IllegalArgumentException("Ids must be positive");
+//        }
+//
+//        User user = userRepository.findById(userId)
+//                .orElseThrow(() -> new IllegalArgumentException("User with id " + userId + " not found"));
+//        Organization organization = organizationRepository.findById(organizationId)
+//                .orElseThrow(() -> new IllegalArgumentException("Organization with id " + organizationId + " not found"));
+//
+//        user.getOrganizations().add(organization);
+//        return userRepository.save(user);
+//    }
 
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("User with id " + userId + " not found"));
-        Organization organization = organizationRepository.findById(organizationId)
-                .orElseThrow(() -> new IllegalArgumentException("Organization with id " + organizationId + " not found"));
-
-        user.getOrganizations().add(organization);
-        return userRepository.save(user);
-    }
-
-    @Override
-    public User removeOrganization(Long userId, Long organizationId) {
-        if (userId == null || userId <= 0 || organizationId == null || organizationId <= 0) {
-            throw new IllegalArgumentException("Ids must be positive");
-        }
-
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User with id " + userId + " not found"));
-        Organization organization = organizationRepository.findById(organizationId).orElseThrow(() -> new IllegalArgumentException("Organization with id " + organizationId + " not found"));
-
-        user.getOrganizations().remove(organization);
-        return userRepository.save(user);
-    }
+//    @Override
+//    public User removeOrganization(Long userId, Long organizationId) {
+//        if (userId == null || userId <= 0 || organizationId == null || organizationId <= 0) {
+//            throw new IllegalArgumentException("Ids must be positive");
+//        }
+//
+//        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User with id " + userId + " not found"));
+//        Organization organization = organizationRepository.findById(organizationId).orElseThrow(() -> new IllegalArgumentException("Organization with id " + organizationId + " not found"));
+//
+//        user.getOrganizations().remove(organization);
+//        return userRepository.save(user);
+//    }
 
 
 

@@ -3,6 +3,7 @@ id SERIAL PRIMARY KEY,
 name VARCHAR(100) NOT NULL,
 surname VARCHAR(100) NOT NULL,
 
+is_deleted BOOLEAN DEFAULT FALSE ,
 
 address VARCHAR(255),
 phone_number VARCHAR(15),
@@ -102,7 +103,6 @@ FOREIGN KEY (organization_id) REFERENCES organization(id)
 );
 
 
-ALTER TABLE users ADD COLUMN is_deleted BOOLEAN DEFAULT FALSE;
 INSERT INTO users (id, name, surname, address, phone_number, email, created_at) VALUES
                                                                                     (1, 'John', 'Doe', '123 Main St, City, Country', '123-456-7890', 'john.doe@example.com', CURRENT_TIMESTAMP),
                                                                                     (2, 'Jane', 'Smith', '456 Oak St, City, Country', '987-654-3210', 'jane.smith@example.com', CURRENT_TIMESTAMP),
@@ -123,10 +123,10 @@ INSERT INTO quarter (id, year, first_enumerator, data_size, start_date, end_date
                                                                                      (1, 2026, 1, 500, '2026-01-01', '2026-03-31'),
                                                                                      (2, 2026, 2, 600, '2026-04-01', '2026-06-30');
 
-INSERT INTO department (id, name) VALUES
-                                      (1, 'Engineering'),
-                                      (2, 'HR'),
-                                      (3, 'Research');
+INSERT INTO department (name) VALUES
+                                      ('Engineering'),
+                                      ( 'HR'),
+                                      ( 'Research');
 
 INSERT INTO user_departments (id, user_id, department_id) VALUES
                                                               (1, 1, 1),

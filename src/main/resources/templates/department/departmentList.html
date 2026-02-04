@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Departments</title>
+</head>
+<body>
+<h1>Departments List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Users</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="department : ${departments}">
+        <td th:text="${department.id}"></td>
+        <td th:text="${department.name}"></td>
+        <td>
+            <span th:each="uId : ${department.userIds}" th:text="${uId} + ' '"></span>
+        </td>
+        <td>
+            <a th:href="@{/admin/department/find/{id}(id=${department.id})}">View</a> |
+            <a th:href="@{/admin/department/delete/{id}(id=${department.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/admin/department/create">Create New Department</a>
+</body>
+</html>

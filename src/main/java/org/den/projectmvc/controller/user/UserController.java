@@ -1,8 +1,8 @@
-package org.den.projectmvc.controller;
+package org.den.projectmvc.controller.user;
 
 
-import org.den.projectmvc.DTO.UserDTO;
-import org.den.projectmvc.models.User;
+import org.den.projectmvc.dto.UserRequest;
+import org.den.projectmvc.entities.user.User;
 import org.den.projectmvc.services.user.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,33 +22,32 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> findAll() {
+    public ResponseEntity<List<UserRequest>> findAll() {
 
         return ResponseEntity.ok(
-                userService.findAll().stream().map(user -> new UserDTO(user.getId() ,
+                userService.findAll().stream().map(user -> new UserRequest(user.getId() ,
                          user.getName() ,
                          user.getSurname() ,
                          user.getAddress() ,
                          user.getPhoneNumber() ,
-                         user.getEmail() , user.getIsDeleted())).toList() // for demonstration purposes i added method isDeleted,but you should delete field "isDelete" in UserDTO
+                         user.getEmail() , user.getDeleted())).toList() // for demonstration purposes i added method isDeleted,but you should delete field "isDelete" in UserDTO
         );
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<UserDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<UserRequest> findById(@PathVariable Long id) {
         return ResponseEntity.ok(toDto(userService.findById(id)));
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> create(@RequestBody User user) { //idk if i should catch by UserDTO or just a User
+    public ResponseEntity<UserRequest> create(@RequestBody User user) { //idk if i should catch by UserDTO or just a User
 
-       // User created = userService.create(toEntity(dto));
         userService.create(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(toDto(user));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<UserDTO> update(@PathVariable Long id, @RequestBody User user) {
+    public ResponseEntity<UserRequest> update(@PathVariable Long id, @RequestBody User user) {
         User updated = userService.update(id, user);
         return ResponseEntity.ok(toDto(updated));
     }
@@ -67,30 +66,20 @@ public class UserController {
     }
 
 
-    private UserDTO toDto(User u) {
+    private UserRequest toDto(User u) {
         if (u == null)
             return null;
-        UserDTO dto = new UserDTO();
+        UserRequest dto = new UserRequest();
         dto.setId(u.getId());
         dto.setName(u.getName());
         dto.setSurname(u.getSurname());
         dto.setAddress(u.getAddress());
         dto.setPhoneNumber(u.getPhoneNumber());
         dto.setEmail(u.getEmail());
+        dto.setIsDeleted(u.getDeleted());
         return dto;
     }
 
-    private User toEntity(UserDTO dto) {
-        if (dto == null)
-            return null;
-        User u = new User();
-        u.setId(dto.getId());
-        u.setName(dto.getName());
-        u.setSurname(dto.getSurname());
-        u.setAddress(dto.getAddress());
-        u.setPhoneNumber(dto.getPhoneNumber());
-        u.setEmail(dto.getEmail());
-        return u;
-    }
+
 
 }

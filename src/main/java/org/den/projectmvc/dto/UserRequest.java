@@ -1,4 +1,4 @@
-package org.den.projectmvc.DTO;
+package org.den.projectmvc.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class UserRequest {
     private Long id;
     private String name;
     private String surname;

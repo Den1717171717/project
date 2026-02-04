@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Department Details</title>
+</head>
+<body>
+<h1>Department Details</h1>
+<p>Department ID: <span th:text="${department.id}"></span></p>
+<p>Department Name: <span th:text="${department.name}"></span></p>
+<h3>Users:</h3>
+<ul>
+    <li th:each="userId : ${department.getUserIds()}" th:text="${userId}"></li>
+</ul>
+<a href="/admin/department/findAll">Back to List</a>
+</body>
+</html>
